@@ -1,0 +1,27 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model accumulation_time {
+  id        Int      @id @default(autoincrement())
+  start     Int
+  end       Int
+  createdAt DateTime @default(now()) @map(name: "create_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  // accumulation_ratio accumulation_ratios? // has one accumulation_ratio
+}
+
+// model accumulation_ratios {
+//   id        Int      @id @default(autoincrement())
+//   ratio     Float
+//   createdAt DateTime @default(now()) @map(name: "created_at")
+//   updatedAt DateTime @updatedAt @map(name: "updated_at")
+//   // belongs to accumulation_time
+//   // accumulation_time    accumulation_time @relation(fields: [accumulation_time_id], references: [id])
+//   // accumulation_time_id Int
+// }
