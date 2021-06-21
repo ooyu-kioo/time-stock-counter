@@ -1,7 +1,7 @@
 import React from "react"
 import { GetStaticProps } from "next"
-import Layout from "../components/Layout"
-import Post, { PostProps } from "../components/Post"
+import Layout from "../ui/components/Layout"
+import Post, { PostProps } from "../ui/components/Post"
 
 export const getStaticProps: GetStaticProps = async () => {
   const feed = [
