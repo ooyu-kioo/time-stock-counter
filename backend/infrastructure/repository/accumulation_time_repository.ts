@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { AccumulationTime } from '../../domain/accumulation_time/accumulation_time.value';
-import { AccumulationTimeRepositoryIF } from '../../domain/accumulation_time/accumulation_time_repository.IF';
+import { AccumulationTime } from '../../domain/accumulation/accumulation_time.value';
+import { AccumulationTimeRepositoryIF } from '../../domain/accumulation/accumulation_time_repository.IF';
 import { PrismaClientFactory } from '../driver/prisma_client_factory';
 
 // todo：extendでprisma初期化試してみる

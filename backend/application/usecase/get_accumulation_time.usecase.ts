@@ -1,5 +1,5 @@
-import { AccumulationTime } from '../../domain/accumulation_time/accumulation_time.value';
-import { AccumulationTimeRepositoryIF } from '../../domain/accumulation_time/accumulation_time_repository.IF';
+import { AccumulationTime } from '../../domain/accumulation/accumulation_time.value';
+import { AccumulationTimeRepositoryIF } from '../../domain/accumulation/accumulation_time_repository.IF';
 import { AccumulationTimeRepository } from '../../infrastructure/repository/accumulation_time_repository';
 
 interface GetAccumulationTimeUsecaseDependencies {
