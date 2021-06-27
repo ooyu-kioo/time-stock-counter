@@ -1,3 +1,5 @@
+// TODO：dirを移す
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
@@ -7,21 +9,30 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model accumulation_points {
+  id Int @id @default(autoincrement())
+  point Int
+  accumulation_time accumulation_time? // has one accumulation_time
+}
+
 model accumulation_time {
   id        Int      @id @default(autoincrement())
   start     Int
   end       Int
   createdAt DateTime @default(now()) @map(name: "create_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
-  // accumulation_ratio accumulation_ratios? // has one accumulation_ratio
+  accumulation_ratio accumulation_ratios? // has one accumulation_ratio
+  // belongs to accumulation_point
+  accumulation_point accumulation_points @relation(fields: [accumulation_point_id], references: [id])
+  accumulation_point_id Int
 }
 
-// model accumulation_ratios {
-//   id        Int      @id @default(autoincrement())
-//   ratio     Float
-//   createdAt DateTime @default(now()) @map(name: "created_at")
-//   updatedAt DateTime @updatedAt @map(name: "updated_at")
-//   // belongs to accumulation_time
-//   // accumulation_time    accumulation_time @relation(fields: [accumulation_time_id], references: [id])
-//   // accumulation_time_id Int
-// }
+model accumulation_ratios {
+  id        Int      @id @default(autoincrement())
+  ratio     Float
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  // belongs to accumulation_time
+  accumulation_time    accumulation_time @relation(fields: [accumulation_time_id], references: [id])
+  accumulation_time_id Int
+}
