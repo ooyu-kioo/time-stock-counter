@@ -12,7 +12,14 @@ generator client {
 model accumulation_points {
   id Int @id @default(autoincrement())
   point Int
-  accumulation_time accumulation_time? // has one accumulation_time
+  // has one accumulation_time
+  accumulation_time    accumulation_time @relation(fields: [accumulation_time_id], references: [id])
+  accumulation_time_id Int
+  // has one accumulation_ratio
+  accumulation_ratio    accumulation_ratios @relation(fields: [accumulation_ratio_id], references: [id])
+  accumulation_ratio_id Int
+  createdAt DateTime @default(now()) @map(name: "create_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
 }
 
 model accumulation_time {
@@ -21,10 +28,7 @@ model accumulation_time {
   end       Int
   createdAt DateTime @default(now()) @map(name: "create_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
-  accumulation_ratio accumulation_ratios? // has one accumulation_ratio
-  // belongs to accumulation_point
-  accumulation_point accumulation_points @relation(fields: [accumulation_point_id], references: [id])
-  accumulation_point_id Int
+  accumulation_points accumulation_points?
 }
 
 model accumulation_ratios {
@@ -32,7 +36,31 @@ model accumulation_ratios {
   ratio     Float
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
-  // belongs to accumulation_time
-  accumulation_time    accumulation_time @relation(fields: [accumulation_time_id], references: [id])
-  accumulation_time_id Int
+  // belongs to accumulation_point
+  accumulation_point accumulation_points?
+  // has one Action, Place, Purpose
+  action actions @relation(fields: [action_id], references: [id])
+  action_id Int
+  place places @relation(fields: [place_id], references: [id])
+  place_id Int
+  purpose purposes @relation(fields: [purpose_id], references: [id])
+  purpose_id Int
+}
+
+model actions {
+  id Int @id @default(autoincrement())
+  name String
+  accumulation_ratio accumulation_ratios?
+}
+
+model places {
+  id Int @id @default(autoincrement())
+  name String
+  accumulation_ratio accumulation_ratios?
+}
+
+model purposes {
+  id Int @id @default(autoincrement())
+  name String
+  accumulation_ratio accumulation_ratios?
 }
