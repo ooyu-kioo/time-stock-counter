@@ -1,4 +1,4 @@
-import { ValueObjectBase } from "../shared/value_object_base";
+import { ValueObjectBase } from "../shared/value_object_base"
 
 interface ActionProps {
   id: number
