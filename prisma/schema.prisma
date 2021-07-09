@@ -50,17 +50,17 @@ model accumulation_ratios {
 model actions {
   id Int @id @default(autoincrement())
   name String
-  accumulation_ratio accumulation_ratios?
+  accumulation_ratios accumulation_ratios[]
 }
 
 model places {
   id Int @id @default(autoincrement())
   name String
-  accumulation_ratio accumulation_ratios?
+  accumulation_ratios accumulation_ratios[]
 }
 
 model purposes {
   id Int @id @default(autoincrement())
   name String
-  accumulation_ratio accumulation_ratios?
+  accumulation_ratios accumulation_ratios[]
 }
