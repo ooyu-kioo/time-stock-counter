@@ -25,6 +25,7 @@ export class AccumulationPointRepository implements AccumulationPointRepositoryI
       const time = times.find((record) => record.id === point.accumulation_time_id)
       const ratio = ratios.find((record) => record.id === point.accumulation_ratio_id)
 
+      // TODO：include optionで綺麗にできそう？
       return new AccumulationPoint({
         id: point.id,
         point: point.point,
@@ -42,5 +43,27 @@ export class AccumulationPointRepository implements AccumulationPointRepositoryI
         }),
       })
     })
+  }
+
+  // TODO：ID型を分離してfunctionの型と返り値適切にする
+  async createPoint(accumulationPoint: AccumulationPoint): Promise<any> {
+    const point = await this.prismaClient.accumulation_points.create({
+      data: {
+        point: accumulationPoint.point,
+        accumulation_time: {
+          create: { start: accumulationPoint.accumulationTime.start, end: accumulationPoint.accumulationTime.end },
+        },
+        accumulation_ratio: {
+          create: {
+            ratio: accumulationPoint.accumulationRatio.ratio,
+            action_id: accumulationPoint.accumulationRatio.actionId,
+            place_id: accumulationPoint.accumulationRatio.placeId,
+            purpose_id: accumulationPoint.accumulationRatio.purposeId,
+          },
+        },
+      },
+    })
+
+    return point
   }
 }
