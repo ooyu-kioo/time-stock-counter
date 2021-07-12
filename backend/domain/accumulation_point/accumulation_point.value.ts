@@ -3,7 +3,7 @@ import { AccumulationRatio } from "./accumulation_ratio.value"
 import { AccumulationTime } from "./accumulation_time.value"
 
 interface AccumulationPointProps {
-  id: number
+  id?: number
   point: number
   accumulationTime: AccumulationTime
   accumulationRatio: AccumulationRatio
@@ -17,12 +17,17 @@ export class AccumulationPoint implements ValueObjectBase<AccumulationPointProps
 
   constructor(props: AccumulationPointProps) {
     this.id = props.id
-    this.point = props.point
     this.accumulationTime = props.accumulationTime
     this.accumulationRatio = props.accumulationRatio
+    this.point = props.point
   }
 
   public isEqueals(other: AccumulationPoint): boolean {
-    return this.id === other.id && this.point === other.point && this.accumulationTime === other.accumulationTime
+    return (
+      this.id === other.id &&
+      this.point === other.point &&
+      this.accumulationTime === other.accumulationTime &&
+      this.accumulationRatio === other.accumulationRatio
+    )
   }
 }

@@ -1,7 +1,7 @@
 import { ValueObjectBase } from "../shared/value_object_base"
 
 interface AccumulationRatioProps {
-  id: number
+  id?: number
   ratio: number
   actionId: number
   placeId: number

@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client"
-import { Purpose } from "../../domain/events/purpose/purpose.value"
-import { PurposeRepositoryIF } from "../../domain/events/purpose/purpose_repository.IF"
+import { Purpose } from "../../domain/purpose/purpose.value"
+import { PurposeRepositoryIF } from "../../domain/purpose/purpose_repository.IF"
 import prisma from "../driver/prisma_client"
 
 interface PurposeRepositoryDependencies {
